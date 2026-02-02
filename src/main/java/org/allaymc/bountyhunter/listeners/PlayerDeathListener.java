@@ -42,6 +42,10 @@ public class PlayerDeathListener {
         UUID hunterId = hunter.getUniqueId();
         BountyData bounty = bountyManager.getBounty(victimId);
         
+        if (bounty == null || bounty.isExpired() || bounty.isClaimed()) {
+            return;
+        }
+        
         if (bounty.getPlacerId().equals(hunterId)) {
             return;
         }
